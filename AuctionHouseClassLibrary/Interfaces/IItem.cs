@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuctionHouseClassLibrary
+namespace AuctionHouseClassLibrary.Interfaces
 {
-    internal interface Mediator
+    internal interface IItem
     {
-
+        
     }
 }
