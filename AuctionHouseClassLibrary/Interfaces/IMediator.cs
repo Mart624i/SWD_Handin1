@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AuctionHouse
+namespace AuctionHouseClassLibrary
 {
     interface IMediator
     {
-        
-    
+        void AddBuyer(Buyer buyer);
+        void FindHighestBidder();
+
+        void AddItem(Item item);
     }
 }

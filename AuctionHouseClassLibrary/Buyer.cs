@@ -6,7 +6,7 @@ namespace AuctionHouseClassLibrary
 {
     public class Buyer : IBuyer
     {
-
+        public string name { get; set; }
         public int accountBalance { get; set; }
         public int bid { get; set; }
         public void GiveBid()
