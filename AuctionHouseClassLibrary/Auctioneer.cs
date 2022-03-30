@@ -9,15 +9,26 @@ namespace AuctionHouseClassLibrary
     {
         // Fields & Properties
 
-        private readonly List<Item> _items = new List<Item>();
+        public List<Item> _items = new List<Item>();
         //private List<Buyer> _buyers;
 
         // Trying to implement the list of buyers 
-        private readonly List<Buyer> _buyers = new List<Buyer>();
+        public List<Buyer> _buyers = new List<Buyer>();
 
-        private Timer _timer = new Timer(5000);
+        private static  Timer _timer;
 
+        // Constructor
 
+        public Auctioneer()
+        {
+            _timer = new Timer(5000);
+            _timer.Elapsed += TimerRunOut;
+        }
+
+        private void TimerRunOut(object? sender, ElapsedEventArgs e)
+        {
+            FindHighestBidder();
+        }
 
         // Methods
         public void AddBuyer(Buyer buyer)
@@ -28,7 +39,7 @@ namespace AuctionHouseClassLibrary
         public void FindHighestBidder()
         {
             // Search for the Buyer with the highest bid
-            Buyer highestBidder = new Buyer();
+            Buyer highestBidder;
             highestBidder = _buyers[0];
             for (int i = 1; i < _buyers.Count; i++)
             {
@@ -41,6 +52,7 @@ namespace AuctionHouseClassLibrary
             Console.WriteLine($"The highest bidder is {highestBidder.name}. Congratulations, you won the item {_items[0].name}!");
 
             //When the auction is done, the item is removed from the list of available items. 
+            _items[0]._itemNotSold = false;
             _items.RemoveAt(0);
         }
 
@@ -49,24 +61,29 @@ namespace AuctionHouseClassLibrary
             _items.Add(item);
         }
 
-        public void Countdown()
+        public void Countdown(Buyer buyer)
         {
             // Countdown from 5 seconds - when a new bid comes, restart the timer. 
             // Method not yet complete
-            _timer.Stop();
-            _timer.Start();
-            while (_timer.Enabled == true)
-            {
-                Console.WriteLine("Starting Countdown!");
-                //for (int i = 1; i < 6; i++)
-                //{
-                //    Console.WriteLine($"{i}...");
+            if(_timer.Enabled == true)
+                _timer.Stop();
 
-                //}
+            _timer.Start();
+            Console.WriteLine("Starting Countdown! Any other bidders?");
+        }
+
+        public Buyer? FindBuyer(string name)
+        {
+            Buyer bidder = null;
+            for (int i = 0; i < _buyers.Count; i++)
+            {
+                if(_buyers[i].name.Contains(name))
+                    bidder = _buyers[i];
+
             }
 
-            // When the time runs out call
-            FindHighestBidder();
+            return bidder;
         }
+
     }
 }

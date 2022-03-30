@@ -10,7 +10,9 @@ namespace AuctionHouseClassLibrary
     public class Item : IItem
     {
         public string name { get; set; } = null!;
-        public double price { get; set; } 
+        public double price { get; set; }
+
+        public bool _itemNotSold;
 
         public Item(string Name, double Price)
         {
@@ -22,6 +24,8 @@ namespace AuctionHouseClassLibrary
             {
                 price = Price;
             }
+
+            _itemNotSold = true;
         }
     }
 }

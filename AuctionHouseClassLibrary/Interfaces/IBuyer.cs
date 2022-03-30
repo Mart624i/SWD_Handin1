@@ -9,6 +9,6 @@ namespace AuctionHouseClassLibrary.Interfaces
     public interface IBuyer
     {
         void SetAccountBalance();
-        void GiveBid();
+        void GiveBid(int bid);
     }
 }

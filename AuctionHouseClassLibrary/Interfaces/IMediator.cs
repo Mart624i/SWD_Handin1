@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace AuctionHouseClassLibrary
 {
-    interface IMediator
+    public interface IMediator
     {
         void AddBuyer(Buyer buyer);
         void FindHighestBidder();
-
         void AddItem(Item item);
+        void Countdown(Buyer buyer);
+
     }
 }
