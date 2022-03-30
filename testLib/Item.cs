@@ -1,0 +1,31 @@
+﻿using AuctionHouseClassLibrary.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AuctionHouseClassLibrary
+{
+    public class Item : IItem
+    {
+        public string name { get; set; }
+        public double price { get; set; }
+
+        public bool _itemNotSold;
+
+        public Item(string Name, double Price)
+        {
+            if(name != null || name != "")
+            {
+                name = Name;
+            }
+            if (price > 0)
+            {
+                price = Price;
+            }
+
+            _itemNotSold = true;
+        }
+    }
+}
